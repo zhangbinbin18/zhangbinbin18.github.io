@@ -301,87 +301,19 @@
       font-size: 14px;
     }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .visit-card {
-      padding: 22px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 180px;
-    }
-
-    .visit-label {
-      margin: 0;
-      color: #556991;
-      font-size: 14px;
-    }
-
-    .visit-number {
-      margin: 10px 0 0;
-      color: var(--navy);
-      font-size: 42px;
-      line-height: 1;
-      font-weight: 700;
-    }
-
-    .map-card {
-      padding: 18px 22px 16px;
-      min-height: 180px;
-    }
-
-    .map-frame {
-      position: relative;
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .world-map {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-    }
-
-    .map-point {
-      position: absolute;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #e21b3c;
-      border: 2px solid #fff;
-      box-shadow: 0 0 0 2px rgba(226, 27, 60, 0.18), 0 3px 8px rgba(20, 32, 54, 0.18);
-      transform: translate(-50%, -50%);
-    }
-
-    .map-point span {
-      position: absolute;
-      left: 13px;
-      top: -7px;
-      color: #123462;
+    .site-footer {
+      width: min(1080px, calc(100% - 56px));
+      margin: 18px auto 42px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: #7a8dad;
       font-size: 13px;
+      text-align: center;
+    }
+
+    .site-footer strong {
+      color: var(--navy);
       font-weight: 700;
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      white-space: nowrap;
-    }
-
-    .map-point.cluster span {
-      top: 8px;
-    }
-
-    .map-point.label-left span {
-      left: auto;
-      right: 13px;
-    }
-
-    .map-point.label-above span {
-      top: -20px;
     }
 
     @media (max-width: 720px) {
@@ -401,10 +333,6 @@
       .project,
       .patent {
         padding: 20px;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
       }
 
       .badge {
@@ -572,59 +500,16 @@
       </div>
     </section>
 
-    <section>
-      <h2 class="section-title">Visitor Statistics &amp; Places</h2>
-      <div class="stats-grid">
-        <div class="card visit-card">
-          <p class="visit-label">Local page visits</p>
-          <p class="visit-number" id="visitCount">1</p>
-        </div>
-        <div class="card map-card">
-          <div class="map-frame" aria-label="World map marking visited places">
-            <img class="world-map" src="world-map.png" alt="World map">
-            <div id="mapMarkers"></div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
+  <footer class="site-footer">
+    Page visits: <strong id="visitCount">1</strong>
+  </footer>
   <script>
     (function () {
       var key = "binbin-homepage-local-visits";
       var visits = Number(localStorage.getItem(key) || "0") + 1;
       localStorage.setItem(key, String(visits));
       document.getElementById("visitCount").textContent = visits.toLocaleString();
-
-      var places = [
-        { name: "Madrid", lat: 40.4168, lon: -3.7038 },
-        { name: "Beijing", lat: 39.9042, lon: 116.4074, label: "label-above" },
-        { name: "Shanghai", lat: 31.2304, lon: 121.4737 },
-        { name: "Wuhan", lat: 30.5928, lon: 114.3055, label: "label-left" },
-        { name: "Shenzhen", lat: 22.5431, lon: 114.0579, label: "label-left", dx: -4, dy: 5 },
-        { name: "Hong Kong", lat: 22.3193, lon: 114.1694, dx: 8, dy: 9 }
-      ];
-
-      function projectToMap(lat, lon) {
-        var minLon = -40;
-        var maxLat = 82;
-        var latSpan = 140;
-        var normalizedLon = lon < minLon ? lon + 360 : lon;
-        return {
-          x: ((normalizedLon - minLon) / 360) * 100,
-          y: ((maxLat - lat) / latSpan) * 100
-        };
-      }
-
-      var markerLayer = document.getElementById("mapMarkers");
-      places.forEach(function (place) {
-        var point = projectToMap(place.lat, place.lon);
-        var marker = document.createElement("div");
-        marker.className = "map-point" + (place.label ? " " + place.label : "");
-        marker.style.left = "calc(" + point.x.toFixed(2) + "% + " + (place.dx || 0) + "px)";
-        marker.style.top = "calc(" + point.y.toFixed(2) + "% + " + (place.dy || 0) + "px)";
-        marker.innerHTML = "<span>" + place.name + "</span>";
-        markerLayer.appendChild(marker);
-      });
     })();
   </script>
 </body>
