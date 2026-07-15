@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Binbin Zhang | Personal Homepage</title>
+  <style>
+    :root {
+      --navy: #082d60;
+      --blue: #2d5c99;
+      --text: #092044;
+      --muted: #52658b;
+      --line: #dbe3ef;
+      --page: #f3f6fa;
+      --card: #ffffff;
+      --shadow: 0 10px 24px rgba(14, 35, 69, 0.08);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: var(--page);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, #213f6d 0%, #315e98 55%, #4579b5 100%);
+      color: #fff;
+      min-height: 245px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: rgba(8, 32, 70, 0.15);
+      top: -70px;
+    }
+
+    .hero::before {
+      left: -70px;
+    }
+
+    .hero::after {
+      right: -90px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-inner,
+    main {
+      width: min(1080px, calc(100% - 56px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      padding: 58px 0 50px;
+    }
+
+    .avatar-wrap {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      padding: 4px;
+      background: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 12px 30px rgba(5, 18, 39, 0.22);
+      flex: 0 0 auto;
+    }
+
+    .avatar {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #dce7f4, #ffffff);
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      font-size: 32px;
+      font-weight: 800;
+      position: relative;
+    }
+
+    .avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 41% 35%;
+    }
+
+    .avatar-fallback {
+      position: relative;
+      z-index: 0;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0 0 12px;
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 17px;
+    }
+
+    main {
+      padding: 0 0 54px;
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 0 0 18px;
+      padding-bottom: 13px;
+      border-bottom: 2px solid var(--line);
+      font-size: 24px;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      color: #071f45;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(27, 52, 88, 0.06);
+    }
+
+    .text-card {
+      padding: 28px 30px;
+      font-size: 17px;
+    }
+
+    .strong {
+      font-weight: 700;
+      color: #10294f;
+    }
+
+    .timeline,
+    .award-table {
+      padding: 20px 28px;
+    }
+
+    .timeline {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 22px;
+      padding: 18px 0;
+      border-bottom: 1px solid #e7edf5;
+    }
+
+    .award-table .row {
+      grid-template-columns: 1fr;
+      padding: 14px 0;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .date,
+    .category,
+    .meta {
+      color: #20427a;
+      font-size: 15px;
+    }
+
+    .timeline .date {
+      font-size: 13px;
+    }
+
+    .entry-title {
+      margin: 0 0 7px;
+      font-size: 18px;
+      line-height: 1.45;
+      color: #071f45;
+      font-weight: 700;
+    }
+
+    .entry-body {
+      margin: 0;
+      color: #556991;
+      font-size: 15px;
+    }
+
+    .publication,
+    .project,
+    .patent {
+      position: relative;
+      padding: 22px 28px;
+      margin-bottom: 14px;
+    }
+
+    .publication {
+      padding-right: 128px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 22px;
+      right: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 64px;
+      height: 28px;
+      padding: 0 13px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge.gold {
+      color: #7d4a00;
+      background: #ffe7a6;
+    }
+
+    .badge.green {
+      color: #08734e;
+      background: #c9f7df;
+    }
+
+    .badge.blue {
+      color: #1c4ed8;
+      background: #dfe9ff;
+    }
+
+    .badge.pink {
+      color: #b30f64;
+      background: #fde4f2;
+    }
+
+    .badge.gray {
+      color: #43536b;
+      background: #eef2f7;
+    }
+
+    .project,
+    .patent {
+      padding-right: 100px;
+    }
+
+    .note {
+      color: #7a8dad;
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .visit-card {
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 180px;
+    }
+
+    .visit-label {
+      margin: 0;
+      color: #556991;
+      font-size: 14px;
+    }
+
+    .visit-number {
+      margin: 10px 0 0;
+      color: var(--navy);
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .map-card {
+      padding: 18px 22px 16px;
+      min-height: 180px;
+    }
+
+    .map-frame {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .world-map {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .map-point {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #e21b3c;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px rgba(226, 27, 60, 0.18), 0 3px 8px rgba(20, 32, 54, 0.18);
+      transform: translate(-50%, -50%);
+    }
+
+    .map-point span {
+      position: absolute;
+      left: 13px;
+      top: -7px;
+      color: #123462;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      white-space: nowrap;
+    }
+
+    .map-point.cluster span {
+      top: 8px;
+    }
+
+    .map-point.label-left span {
+      left: auto;
+      right: 13px;
+    }
+
+    .map-point.label-above span {
+      top: -20px;
+    }
+
+    @media (max-width: 720px) {
+      .hero-inner,
+      main {
+        width: min(100% - 30px, 1080px);
+      }
+
+      .hero-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 22px;
+        padding: 36px 0 38px;
+      }
+
+      .publication,
+      .project,
+      .patent {
+        padding: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .badge {
+        position: static;
+        margin-top: 12px;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="avatar-wrap" aria-hidden="true">
+        <div class="avatar">
+          <span class="avatar-fallback">BZ</span>
+          <img src="avatar2023.jpg" alt="" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div>
+        <h1>Binbin Zhang (张宾宾)</h1>
+        <p class="subtitle">University of Science and Technology of China · Associate Researcher</p>
+        <a class="email" href="mailto:robin18@ustc.edu.cn">✉ robin18@ustc.edu.cn</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Research Interests</h2>
+      <div class="card text-card">
+        Focused on <span class="strong">wireless sensing</span>, including gesture recognition,
+        cardiac activity monitoring, and human search and rescue; <span class="strong">flexible sensing</span>,
+        including electronic skin and vital-sign sensing textiles; <span class="strong">flexible chips</span>; and
+        <span class="strong">security</span>.
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Education</h2>
+      <div class="card timeline">
+        <div class="row">
+          <div class="date">2024 - 2026</div>
+          <div><span class="strong">University of Science and Technology of China</span> · Cyberspace Security · Postdoctoral</div>
+        </div>
+        <div class="row">
+          <div class="date">2018 - 2024</div>
+          <div><span class="strong">University of Science and Technology of China</span> · Cyberspace Security · Ph.D.</div>
+        </div>
+        <div class="row">
+          <div class="date">2010 - 2014</div>
+          <div><span class="strong">Anhui University</span> · Electronic Science and Technology · B.S.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Selected Publications</h2>
+
+      <article class="card publication">
+        <h3 class="entry-title">Monitoring Long-term Cardiac Activity with Contactless Radio Frequency Signals</h3>
+        <p class="entry-body"><span class="strong">B. Zhang</span>, D. Zhang, Y. Li, Z. Lu, J. Chen, H. Wang, F. Zhou, Y. Pu, Y. Hu, L. Ma, Q. Sun, Y. Chen · <em>Nature Communications</em>, 2024, 15(1):1-11</p>
+      </article>
+
+      <article class="card publication">
+        <h3 class="entry-title">Unsupervised Domain Adaptation for RF-Based Gesture Recognition</h3>
+        <p class="entry-body"><span class="strong">B. Zhang</span>, D. Zhang, Y. Li, Y. Hu, Y. Chen · <em>IEEE Internet of Things Journal</em>, 2023 (JCR Q1, IF: 10.6)</p>
+        <span class="badge green">JCR Q1</span>
+      </article>
+
+      <article class="card publication">
+        <h3 class="entry-title">RF-Search: Searching Unconscious Victim in Smoke Scenes with RF-enabled Drone</h3>
+        <p class="entry-body"><span class="strong">B. Zhang</span>, D. Zhang, R. Song, B. Wang, Y. Hu, Y. Chen · <em>Proceedings of the 29th Annual International Conference on Mobile Computing and Networking (MobiCom)</em>, 2023</p>
+        <span class="badge blue">CCF-A</span>
+      </article>
+
+      <article class="card publication">
+        <h3 class="entry-title">Contactless Premature Ventricular Contractions Diagnosis with Radio Frequency Signals based on Deep Auxiliary Learning</h3>
+        <p class="entry-body">X. Yuan, <span class="strong">B. Zhang*</span>, Z. Guo, Y. Hu, Y. Chen · <em>IEEE Internet of Things Journal</em>, 2026 (JCR Q1, IF: 10.6)</p>
+        <span class="badge green">JCR Q1</span>
+      </article>
+
+      <article class="card publication">
+        <h3 class="entry-title">MaskSense: Motion-Robust Dynamic IBI Estimation Via Deep RF Masked Learning</h3>
+        <p class="entry-body">J. Wang, <span class="strong">B. Zhang</span>, R. Geng, D. Zhang, Y. Hu, Y. Chen · <em>IEEE Transactions on Mobile Computing</em>, 2025 (JCR Q1, IF: 9.2)</p>
+        <span class="badge green">JCR Q1</span>
+      </article>
+
+      <article class="card publication">
+        <h3 class="entry-title">RF-GymCare: Introducing respiratory prior for RF sensing in gym environments</h3>
+        <p class="entry-body">J. Wang, D. Zhang, <span class="strong">B. Zhang</span>, J. Chen, Y. Hu, Y. Chen · <em>Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (UbiComp)</em>, 2024</p>
+        <span class="badge blue">CCF-A</span>
+      </article>
+
+      <article class="card publication">
+        <h3 class="entry-title">Contactless Fine-grained Cardiac Events Detection and Segmentation with Radio Frequency Signals</h3>
+        <p class="entry-body">Z. Guo, <span class="strong">B. Zhang</span>, J. Chen, Y. Hu, Y. Chen · <em>Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (UbiComp)</em>, 2025</p>
+        <span class="badge blue">CCF-A</span>
+      </article>
+    </section>
+
+    <section>
+      <h2 class="section-title">Projects</h2>
+
+      <article class="card project">
+        <h3 class="entry-title">无接触式心率变异性高精度鲁棒监测</h3>
+        <p class="entry-body">国家资助博士后研究计划C类 · 24万元 · 2024-2026</p>
+        <span class="badge pink">主持</span>
+      </article>
+
+      <article class="card project">
+        <h3 class="entry-title">基于射频信号的高精度心脏活动监测系统</h3>
+        <p class="entry-body">中央高校基本科研业务费专项资金 · 11万元 · 2026-2027</p>
+        <span class="badge pink">主持</span>
+      </article>
+
+      <article class="card project">
+        <h3 class="entry-title">国家疫情防控平台关键技术：发现、分析与预警</h3>
+        <p class="entry-body">国家重点研发计划 · 100万元 · 2022-2025</p>
+        <span class="badge gray">参与</span>
+      </article>
+
+      <article class="card project">
+        <h3 class="entry-title">结构性心脏病全生命周期管理和评估体系</h3>
+        <p class="entry-body">科技部 · 132万元 · 2022-2025</p>
+        <span class="badge gray">参与</span>
+      </article>
+    </section>
+
+    <section>
+      <h2 class="section-title">Patents</h2>
+
+      <article class="card patent">
+        <h3 class="entry-title">信号处理方法、装置、无人机及计算机可读存储介质</h3>
+        <p class="entry-body">陈彦, 张宾宾, 张乐恒, 等</p>
+        <p class="note">ZL202310993104.6</p>
+      </article>
+
+      <article class="card patent">
+        <h3 class="entry-title">面向手势识别的无监督域自适应训练方法及应用</h3>
+        <p class="entry-body">陈彦, 张宾宾, 张乐恒, 等</p>
+        <p class="note">ZL202111240597.3</p>
+      </article>
+
+      <article class="card patent">
+        <h3 class="entry-title">利用多种标注模式的主动众包学习方法及应用</h3>
+        <p class="entry-body">孙广中, 潘轶功, 张宾宾</p>
+        <p class="note">CN111027712A</p>
+      </article>
+    </section>
+
+    <section>
+      <h2 class="section-title">Honors &amp; Awards</h2>
+      <div class="card award-table">
+        <div class="row">
+          <div>国家资助博士后研究计划C类</div>
+        </div>
+        <div class="row">
+          <div>华为博士生奖学金</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Visitor Statistics &amp; Places</h2>
+      <div class="stats-grid">
+        <div class="card visit-card">
+          <p class="visit-label">Local page visits</p>
+          <p class="visit-number" id="visitCount">1</p>
+        </div>
+        <div class="card map-card">
+          <div class="map-frame" aria-label="World map marking visited places">
+            <img class="world-map" src="world-map.png" alt="World map">
+            <div id="mapMarkers"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      var key = "binbin-homepage-local-visits";
+      var visits = Number(localStorage.getItem(key) || "0") + 1;
+      localStorage.setItem(key, String(visits));
+      document.getElementById("visitCount").textContent = visits.toLocaleString();
+
+      var places = [
+        { name: "Madrid", lat: 40.4168, lon: -3.7038 },
+        { name: "Beijing", lat: 39.9042, lon: 116.4074, label: "label-above" },
+        { name: "Shanghai", lat: 31.2304, lon: 121.4737 },
+        { name: "Wuhan", lat: 30.5928, lon: 114.3055, label: "label-left" },
+        { name: "Shenzhen", lat: 22.5431, lon: 114.0579, label: "label-left", dx: -4, dy: 5 },
+        { name: "Hong Kong", lat: 22.3193, lon: 114.1694, dx: 8, dy: 9 }
+      ];
+
+      function projectToMap(lat, lon) {
+        var minLon = -40;
+        var maxLat = 82;
+        var latSpan = 140;
+        var normalizedLon = lon < minLon ? lon + 360 : lon;
+        return {
+          x: ((normalizedLon - minLon) / 360) * 100,
+          y: ((maxLat - lat) / latSpan) * 100
+        };
+      }
+
+      var markerLayer = document.getElementById("mapMarkers");
+      places.forEach(function (place) {
+        var point = projectToMap(place.lat, place.lon);
+        var marker = document.createElement("div");
+        marker.className = "map-point" + (place.label ? " " + place.label : "");
+        marker.style.left = "calc(" + point.x.toFixed(2) + "% + " + (place.dx || 0) + "px)";
+        marker.style.top = "calc(" + point.y.toFixed(2) + "% + " + (place.dy || 0) + "px)";
+        marker.innerHTML = "<span>" + place.name + "</span>";
+        markerLayer.appendChild(marker);
+      });
+    })();
+  </script>
+</body>
+</html>
